@@ -1,0 +1,4 @@
+io
+requests
+PIL
+webbrowser
