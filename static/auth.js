@@ -5,7 +5,6 @@
 
         if (token) {
             setSecurityCookie(token);
-            window.location.href = '/home';
         }
     };
 
