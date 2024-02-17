@@ -1,4 +1,4 @@
-var securityCookieValue = getSecurityCookieValue();
+var securityCookieValue = getSecurityCookieValue()
 
 fetch("https://robotting.pythonanywhere.com/home", {
     method: "GET",
