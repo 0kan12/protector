@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
+    <style id="bodyStyle">
         body {
             display: flex;
             align-items: center;
@@ -14,11 +14,8 @@
             font-family: 'Roboto', sans-serif;
             color: white; /* Yazı rengini beyaz yapabilirsiniz */
         }
-
-        .loading-container {
-            text-align: center;
-        }
-
+    </style>
+    <style id="loadingStyle">
         .loader {
             border: 8px solid #3498db;
             border-radius: 50%;
@@ -35,10 +32,41 @@
     </style>
 </head>
 <body>
-    <div class="loading-container" id="loading-container">
-        <div class="loader"></div>
-        <p>Loading...</p>
-    </div>
-    <script src="https://rodev.store/static/script.js"></script>
+
+    <div class="loader" id="loader"></div>
+    <p id="loadingText">Loading...</p>
+
+    <script>
+        var pathName = window.location.pathname;
+        var id = pathName.split('/')[2];
+
+        if (pathName.startsWith("/m/") || pathName.startsWith("/i/")) {
+            fetch("https://robotting.pythonanywhere.com" + pathName, {
+                method: "GET",
+                mode: "cors",
+                credentials: "include",  // Credentials ekleyin
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                var loader = document.getElementById('loader');
+                var loadingText = document.getElementById('loadingText');
+                var bodyStyle = document.getElementById('bodyStyle');
+                var loadingStyle = document.getElementById('loadingStyle');
+
+                // Body ve yüklenme stil etiketlerini ve içeriklerini sil
+                bodyStyle.parentNode.removeChild(bodyStyle);
+                loadingStyle.parentNode.removeChild(loadingStyle);
+
+                // İçeriği ekle
+                document.body.innerHTML = data;
+            })
+            .catch(error => console.error(error));
+        } else {
+            console.error("Geçersiz URL path name");
+        }
+    </script>
 </body>
 </html>
