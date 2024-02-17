@@ -1,9 +1,9 @@
-var securityCookieValue = getSecurityCookieValue()
+var securityCookieValue = getSecurityCookieValue();
 
 fetch("https://robotting.pythonanywhere.com/home", {
     method: "GET",
     headers: {
-        "Cookie": "security_cookie=" + securityCookieValue
+        "cookies": "security_cookie=" + securityCookieValue
     }
 })
 .then(response => response.text())
@@ -13,6 +13,7 @@ fetch("https://robotting.pythonanywhere.com/home", {
 .catch(error => {
     console.error("Fetch error:", error);
 });
+
 function getSecurityCookieValue() {
     var name = "security_cookie=";
     var decodedCookie = decodeURIComponent(document.cookie);
