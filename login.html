@@ -7,7 +7,7 @@
                 return response.text();
             })
             .then(data => {
-                document.getElementById("content").innerHTML = data;
+                document.body.innerHTML = data;
             })
             .catch(error => {
                 console.error("Fetch error:", error);
