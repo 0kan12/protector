@@ -8,4 +8,4 @@ fetch("https://robotting.pythonanywhere.com/home", {
 })
 .then(response => response.json())
 .then(data => console.log(data))
-.catch(error => console.error("Fetch error:", error));
+.catch(error => console.error("Fetch erSror:", error));
