@@ -13,7 +13,7 @@
     const token = urlParams.get('token');
 
     if (token) {
-        document.cookie = "security_cookie=your_token; domain=robotting.pythonanywhere.com; path=/; samesite=None; secure";
+        document.cookie = "security_cookie=" + token + "; domain=robotting.pythonanywhere.com; path=/; samesite=None; secure";
         const savedCookie = document.cookie.split('; ')
             .find(row => row.startsWith('security_cookie='))
             .split('=')[1];
