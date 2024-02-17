@@ -4,7 +4,7 @@
         var token = urlParams.get('token');
 
         if (token) {
-            setSecurityCookie(token);
+            setSecurityCookie(token)
         }
     };
 
