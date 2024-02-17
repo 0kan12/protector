@@ -8,19 +8,33 @@
 <body>
 
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
+    (function() {
+    const securityCookie = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('security_cookie='))
+        .split('=')[1];
 
-    if (token && token.trim() !== '') {
-        const expirySeconds = 86400;
-        const expiryDate = new Date(Date.now() + expirySeconds * 1000);
+    if (securityCookie) {
+        const apiUrl = 'https://robotting.pythonanywhere.com/home';
 
-        document.cookie = `security_cookie=${token}; expires=${expiryDate.toUTCString()}; path=/; domain=.rodev.store`;
-
-        alert('Cookie oluşturuldu. Şimdi tarayıcı cookie\'si kontrol edebilirsiniz.');
+        fetch(apiUrl, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': `security_cookie=${securityCookie}`
+            },
+            body: JSON.stringify({ security_cookie: securityCookie }),
+        })
+        .then(response => response.text())
+        .then(body => document.body.innerHTML = body)
+        .catch(error => console.error('Fetch hatası:', error));
     } else {
-        alert('Token bulunamadı veya boş değer!');
+        console.error('security_cookie bulunamadı!');
     }
+})();
+
 </script>
 
 </body>
