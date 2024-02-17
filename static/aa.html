@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch with Cookies</title>
+</head>
+<body>
+    <script>
+        var url = "https://robotting.pythonanywhere.com/home";
+        var cookies = "security_cookie=8a296f400b5486a80096f5135205b66427a727ee70246cfa9fff2e931e7338760f19336716657955557bb9b5421b3648c227e956f6693212f13d5d397fdd83fe707c7fbf9fc226e8ea30256fd2355f15fdc33cccc6498694f082729ce556df0d3aad2cfc";
+
+        // Cookies'ı parçala ve objeye çevir
+        var cookiesObj = {};
+        cookies.split(';').forEach(function(cookie) {
+            var parts = cookie.split('=');
+            cookiesObj[parts[0].trim()] = parts[1].trim();
+        });
+
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Cookie": cookies,
+                "Content-Type": "application/json", // Bu başlığı ekleyin veya uygun başlıkları ekleyin
+            },
+            mode: "cors",
+            credentials: "include"
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    </script>
+</body>
+</html>
