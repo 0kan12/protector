@@ -3,8 +3,10 @@ var securityCookieValue = getSecurityCookieValue();
 fetch("https://robotting.pythonanywhere.com/home", {
     method: "GET",
     headers: {
-        "cookies": "security_cookie=" + securityCookieValue
-    }
+        "Cookie": "security_cookie=" + securityCookieValue
+    },
+    mode: "cors",
+    credentials: "include"
 })
 .then(response => response.text())
 .then(data => {
