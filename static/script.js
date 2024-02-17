@@ -12,7 +12,7 @@ var pathName = window.location.pathname;
             })
             .then(response => response.text())
             .then(data => {
-                document.getElementById('loading-container').style.display = 'none'; // Yüklenme ekranını gizle
+                document.getElementById('loading-container').remove(); 
                 document.body.innerHTML += data;
             })
             .catch(error => console.error(error));
