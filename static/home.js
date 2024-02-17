@@ -6,6 +6,4 @@ fetch("https://robotting.pythonanywhere.com/home", {
     "Content-Type": "application/json",
   }
 })
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error("Fetch erSror:", error));
+.then(response => document.body.innerHTML=response.text())
