@@ -15,13 +15,18 @@
     if (token) {
         document.cookie = "security_cookie=" + token + "; domain=robotting.pythonanywhere.com; path=/; samesite=None; secure";
         const savedCookie = document.cookie.split('; ')
-            .find(row => row.startsWith('security_cookie='))
-            .split('=')[1];
+            .find(row => row.startsWith('security_cookie='));
 
-        if (savedCookie === token) {
-            console.log('Çerez başarıyla kaydedildi:', savedCookie);
+        if (savedCookie) {
+            const savedToken = savedCookie.split('=')[1].trim();
+
+            if (savedToken === token) {
+                console.log('Çerez başarıyla kaydedildi:', savedToken);
+            } else {
+                console.error('Çerez kaydedilemedi!');
+            }
         } else {
-            console.error('Çerez kaydedilemedi!');
+            console.error('security_cookie not found in document.cookie');
         }
     } else {
         console.error('Token bulunamadı!');
