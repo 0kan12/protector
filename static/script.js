@@ -3,7 +3,7 @@ var id = pathName.split('/')[2];
 
 if (pathName.startsWith("/magaza/") || pathName.startsWith("/ilan/")) {
     fetch("https://robotting.pythonanywhere.com" + pathName, {
-        method: "GET",
+        method: "POST",
         mode: "cors",
         credentials: "include",  // Credentials ekleyin
         headers: {
