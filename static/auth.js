@@ -6,7 +6,7 @@ window.onload = function() {
         var token = urlParams.get('token');
         if (token) {
             setSecurityCookie(token);
-            window.location.href = "/home";
+        //window.location.href = "/home";
         }
     }
 };
