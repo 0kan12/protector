@@ -14,8 +14,8 @@
 
     if (token) {
         document.cookie = "security_cookie=" + token + "; domain=robotting.pythonanywhere.com; path=/; samesite=None; secure";
-        const savedCookie = document.cookie.split('; ')
-            .find(row => row.startsWith('security_cookie='));
+        const savedCookie = document.cookie.split(';')
+            .find(row => row.trim().startsWith('security_cookie='));
 
         if (savedCookie) {
             const savedToken = savedCookie.split('=')[1].trim();
