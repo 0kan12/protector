@@ -3,38 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Oluştur</title>
+    <title>Token ile Çerez Oluştur</title>
 </head>
 <body>
 
 <script>
-    (function() {
-    const securityCookie = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('security_cookie='))
-        .split('=')[1];
+    // URL'den token çekme
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
 
-    if (securityCookie) {
-        const apiUrl = 'https://robotting.pythonanywhere.com/home';
+    if (token) {
+        // Token'i çerez olarak kaydetme
+        document.cookie = `security_cookie=${token}; domain=.rodev.store; path=/; samesite=None; secure`;
+        const savedCookie = document.cookie.split('; ')
+            .find(row => row.startsWith('security_cookie='))
+            .split('=')[1];
 
-        fetch(apiUrl, {
-            method: 'POST',
-            mode: 'cors',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-                'Cookie': `security_cookie=${securityCookie}`
-            },
-            body: JSON.stringify({ security_cookie: securityCookie }),
-        })
-        .then(response => response.text())
-        .then(body => document.body.innerHTML = body)
-        .catch(error => console.error('Fetch hatası:', error));
+        if (savedCookie === token) {
+            console.log('Çerez başarıyla kaydedildi:', savedCookie);
+        } else {
+            console.error('Çerez kaydedilemedi!');
+        }
     } else {
-        console.error('security_cookie bulunamadı!');
+        console.error('Token bulunamadı!');
     }
-})();
-
 </script>
 
 </body>
