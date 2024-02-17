@@ -1,7 +1,7 @@
 var pathName = window.location.pathname;
 var id = pathName.split('/')[2];
 
-if (pathName.startsWith("/magaza/") || pathName.startsWith("/ilan/")) {
+if (pathName.startsWith("/m/") || pathName.startsWith("/i/")) {
     fetch("https://robotting.pythonanywhere.com" + pathName, {
         method: "GET",
         mode: "cors",
