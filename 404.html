@@ -34,7 +34,6 @@
 <body>
 
     <div class="loader" id="loader"></div>
-    <p id="loadingText">Loading...</p>
 
     <script>
         var pathName = window.location.pathname;
@@ -52,15 +51,10 @@
             .then(response => response.text())
             .then(data => {
                 var loader = document.getElementById('loader');
-                var loadingText = document.getElementById('loadingText');
                 var bodyStyle = document.getElementById('bodyStyle');
                 var loadingStyle = document.getElementById('loadingStyle');
-
-                // Body ve yüklenme stil etiketlerini ve içeriklerini sil
                 bodyStyle.parentNode.removeChild(bodyStyle);
                 loadingStyle.parentNode.removeChild(loadingStyle);
-
-                // İçeriği ekle
                 document.body.innerHTML = data;
             })
             .catch(error => console.error(error));
