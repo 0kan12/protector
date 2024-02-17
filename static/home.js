@@ -1,5 +1,5 @@
 fetch("https://robotting.pythonanywhere.com/home", {
-  method: "GET",
+  method: "POST",
   mode: "cors",
   credentials: "include",
   headers: {
