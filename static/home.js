@@ -3,7 +3,7 @@ fetch("https://robotting.pythonanywhere.com/home", {
   mode: "cors",
   credentials: "include",
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
   }
 })
 .then(response => document.body.innerHTML=response.text())
