@@ -37,30 +37,28 @@
 
     <script>
         var pathName = window.location.pathname;
-        var id = pathName.split('/')[2];
 
-        if (pathName.startsWith("/m/") || pathName.startsWith("/i/")) {
-            fetch("https://robotting.pythonanywhere.com" + pathName, {
-                method: "GET",
-                mode: "cors",
-                credentials: "include",  // Credentials ekleyin
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                var loader = document.getElementById('loader');
-                var bodyStyle = document.getElementById('bodyStyle');
-                var loadingStyle = document.getElementById('loadingStyle');
-                bodyStyle.parentNode.removeChild(bodyStyle);
-                loadingStyle.parentNode.removeChild(loadingStyle);
-                document.body.innerHTML = data;
-            })
-            .catch(error => console.error(error));
-        } else {
+        fetch("https://robotting.pythonanywhere.com" + pathName, {
+            method: "GET",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.text())
+        .then(data => {
+            var loader = document.getElementById('loader');
+            var bodyStyle = document.getElementById('bodyStyle');
+            var loadingStyle = document.getElementById('loadingStyle');
+            bodyStyle.parentNode.removeChild(bodyStyle);
+            loadingStyle.parentNode.removeChild(loadingStyle);
+            document.body.innerHTML = data;
+        })
+        .catch(error => {
+            console.error(error);
             console.error("Geçersiz URL path name");
-        }
+        });
     </script>
 </body>
 </html>
