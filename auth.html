@@ -14,7 +14,7 @@
         // Token değeri varsa ve güvenli bir bağlantı üzerinden geliyorsa
         if (token && window.location.protocol === "https:") {
             // Cookie'yi oluştur ve .rodev.store domain'ine kaydet
-            document.cookie = `security_cookie=${token}; domain=.rodev.store; secure=true; samesite=Lax`;
+            //document.cookie = `security_cookie=${token}; domain=.rodev.store; secure=true; samesite=Lax`;
             console.log("Cookie set:", document.cookie);
         } else {
             console.error("Token not found or not over secure connection.");
