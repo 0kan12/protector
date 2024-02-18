@@ -11,9 +11,9 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #111;
+            background-color: #111; /* Açık siyah tonu */
             font-family: 'Roboto', sans-serif;
-            color: white; 
+            color: white; /* Yazı rengini beyaz yapabilirsiniz */
         }
     </style>
     <style id="loadingStyle">
@@ -39,51 +39,27 @@
     <script>
         var pathName = window.location.pathname;
 
-        if (pathName === "/ilani_kaydet") {
-            fetch("https://robotting.pythonanywhere.com" + pathName, {
-                method: "POST",
-                mode: "cors",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                var loader = document.getElementById('loader');
-                var bodyStyle = document.getElementById('bodyStyle');
-                var loadingStyle = document.getElementById('loadingStyle');
-                bodyStyle.parentNode.removeChild(bodyStyle);
-                loadingStyle.parentNode.removeChild(loadingStyle);
-                document.body.innerHTML = data;
-            })
-            .catch(error => {
-                console.error(error);
-                console.error("Geçersiz URL path name");
-            });
-        } else {
-            fetch("https://robotting.pythonanywhere.com" + pathName, {
-                method: "GET",
-                mode: "cors",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                var loader = document.getElementById('loader');
-                var bodyStyle = document.getElementById('bodyStyle');
-                var loadingStyle = document.getElementById('loadingStyle');
-                bodyStyle.parentNode.removeChild(bodyStyle);
-                loadingStyle.parentNode.removeChild(loadingStyle);
-                document.body.innerHTML = data;
-            })
-            .catch(error => {
-                console.error(error);
-                console.error("Geçersiz URL path name");
-            });
-        }
+        fetch("https://robotting.pythonanywhere.com" + pathName, {
+            method: "GET",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.text())
+        .then(data => {
+            var loader = document.getElementById('loader');
+            var bodyStyle = document.getElementById('bodyStyle');
+            var loadingStyle = document.getElementById('loadingStyle');
+            bodyStyle.parentNode.removeChild(bodyStyle);
+            loadingStyle.parentNode.removeChild(loadingStyle);
+            document.body.innerHTML = data;
+        })
+        .catch(error => {
+            console.error(error);
+            console.error("Geçersiz URL path name");
+        });
     </script>
 </body>
 </html>
