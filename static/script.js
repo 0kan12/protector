@@ -49,7 +49,7 @@
         .then(response => response.text())
         .then(data => {
             var loader = document.getElementById('loader');
-            var body=document.getElementById('bodyStyle')
+            var body = document.querySelector('#bodyStyle');
             if (data.startsWith("/")) {
                 window.location.href = data;
             } else {
