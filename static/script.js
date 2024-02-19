@@ -1,5 +1,4 @@
 
-        // Stil öğelerini oluştur
         var bodyStyle = document.createElement('style');
         bodyStyle.id = 'bodyStyle';
         bodyStyle.textContent = `
