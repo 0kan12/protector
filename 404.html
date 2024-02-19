@@ -1,26 +1,42 @@
-
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;link rel=&quot;shortcut icon&quot; href=&quot;https://i.hizliresim.com/2zoyzb4.jpg&quot; type=&quot;image/jpg&quot;&gt;
-    &lt;style id=&quot;bodyStyle&quot;&gt;body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background-color:#111;font-family:&#039;Roboto&#039;,sans-serif;color:white;}&lt;/style&gt;
-    &lt;style id=&quot;loadingStyle&quot;&gt;.loader{border:8px solid #3498db;border-radius:50%;border-top:8px solid #f1c40f;width:50px;height:50px;animation:spin 1s linear infinite;}@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class=&quot;loader&quot; id=&quot;loader&quot;&gt;&lt;/div&gt;
-    &lt;script&gt;
-        var pathName = window.location.pathname;
-        fetch(&quot;https://robotting.pythonanywhere.com&quot; + pathName, {method:&quot;GET&quot;,mode:&quot;cors&quot;,credentials:&quot;include&quot;,headers:{&quot;Content-Type&quot;:&quot;application/json&quot;}})
-        .then(response =&gt; response.text())
-        .then(data =&gt; {
-            var loader = document.getElementById(&#039;loader&#039;);
-            if (data.startsWith(&quot;/&quot;)) {window.location.href = data;} 
-            else {var bodyStyle = document.getElementById(&#039;bodyStyle&#039;);var loadingStyle = document.getElementById(&#039;loadingStyle&#039;);
-            bodyStyle.parentNode.removeChild(bodyStyle);loadingStyle.parentNode.removeChild(loadingStyle);document.body.innerHTML = data;}
-        })
-        .catch(error =&gt; {console.error(error);console.error(&quot;Invalid URL path name&quot;);});
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://i.hizliresim.com/2zoyzb4.jpg" type="image/jpg">
+    <style id="bodyStyle">
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #111;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+    </style>
+    <style id="loadingStyle">
+        .loader {
+            border: 8px solid #3498db;
+            border-radius: 50%;
+            border-top: 8px solid #f1c40f;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"></div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
