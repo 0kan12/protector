@@ -1,3 +1,4 @@
+
 var bodyStyle = document.createElement('style');
 bodyStyle.id = 'bodyStyle';
 bodyStyle.textContent = `
@@ -35,31 +36,28 @@ loadingStyle.textContent = `
 `;
 document.head.appendChild(bodyStyle);
 document.head.appendChild(loadingStyle);
-
-setTimeout(function() {
-    var pathName = window.location.pathname;
-    fetch("https://robotting.pythonanywhere.com" + pathName, {
-        method: "GET",
-        mode: "cors",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(response => response.text())
-    .then(data => {
-        var loader = document.getElementById('loader');
-        var body = document.querySelector('#bodyStyle');
-        if (data.startsWith("/")) {
-            window.location.href = data;
-        } else {
-            loader.parentNode.removeChild(loader);
-            body.parentNode.removeChild(body)
-            document.body.innerHTML = data;
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        console.error("Invalid URL path name");
-    });
-}, 1000); // 1000 milisaniye = 1 saniye
+var pathName = window.location.pathname;
+fetch("https://robotting.pythonanywhere.com" + pathName, {
+    method: "GET",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+        "Content-Type": "application/json"
+    }
+})
+.then(response => response.text())
+.then(data => {
+    var loader = document.getElementById('loader');
+    var body = document.querySelector('#bodyStyle');
+    if (data.startsWith("/")) {
+        window.location.href = data;
+    } else {
+        loader.parentNode.removeChild(loader);
+        body.parentNode.removeChild(body)
+        document.body.innerHTML = data;
+    }
+})
+.catch(error => {
+    console.error(error);
+    console.error("Invalid URL path name");
+});
